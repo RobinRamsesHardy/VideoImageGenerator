@@ -1,0 +1,461 @@
+{
+  "InitializeTest": {
+    "Layout": {
+      "SaveFilePath": "..\\..\\UnitTestImages\\",
+      "Width": 100,
+      "Height": 100,
+      "Background Image": "..\\..\\UnitTestImages\\Red.png"
+    },
+    "Images": [
+      {
+        "Filename": "InitializeTest",
+        "Data": []
+      }
+    ]
+  },
+
+  "ImageBlockTest": {
+    "Layout": {
+      "SaveFilePath": "..\\..\\UnitTestImages\\",
+      "Width": 100,
+      "Height": 100,
+      "Background Image": "..\\..\\UnitTestImages\\Red.png",
+      "Blocks": [
+        {
+          "Type": "ImageBlock",
+          "Name": "BlueCenter",
+          "HeightOffset": 50,
+          "WidthOffset": 50,
+          "Width": 50,
+          "Height": 50,
+          "Alignment": 4,
+          "Blocks": [
+            {
+              "Type": "ImageBlock",
+              "Name": "GreenBar",
+              "HeightOffset": 25,
+              "Width": 50,
+              "Height": 25,
+              "Alignment": 1
+            }
+          ]
+        },
+        {
+          "Type": "ImageBlock",
+          "Name": "GreenBar",
+          "WidthOffset": 50,
+          "Width": 50,
+          "Height": 25,
+          "Alignment": 1
+        }
+      ]
+    },
+    "Images": [
+      {
+        "Filename": "ImageBlockTest",
+        "Data": [
+          {
+            "Name": "BlueCenter",
+            "StoredImage": "../../UnitTestImages/Blue.png",
+            "RetainAspectRatio": false,
+            "Blocks": [
+              {
+                "Name": "GreenBar",
+                "StoredImage": "../../UnitTestImages/Green.png"
+              }
+            ]
+          },
+          {
+            "Name": "GreenBar",
+            "StoredImage": "../../UnitTestImages/Green.png"
+          }
+        ]
+      }
+    ]
+  },
+
+  "TextBlockTest": {
+    "Layout": {
+      "SaveFilePath": "..\\..\\UnitTestImages\\",
+      "Width": 100,
+      "Height": 100,
+      "Background Image": "..\\..\\UnitTestImages\\Red.png",
+      "Font": "C:/Windows/Fonts/arial.ttf",
+      "Blocks": [
+        {
+          "Type": "TextBlock",
+          "Name": "LetterA",
+          "HeightOffset": 50,
+          "WidthOffset": 50,
+          "Alignment": 4,
+          "Blocks": [
+            {
+              "Type": "TextBlock",
+              "Name": "DEF",
+              "HeightOffset": 25,
+              "Alignment": 1
+            }
+          ]
+        },
+        {
+          "Type": "TextBlock",
+          "Name": "ABC",
+          "WidthOffset": 50,
+          "Alignment": 1
+        }
+      ]
+    },
+    "Images": [
+      {
+        "Filename": "TextBlockTest",
+        "Data": [
+          {
+            "Name": "LetterA",
+            "Text": "A",
+            "PixelHeight": 50,
+            "Blocks": [
+              {
+                "Name": "DEF",
+                "Text": "DEF",
+                "PixelHeight": 25
+              }
+            ]
+          },
+          {
+            "Name": "ABC",
+            "Text": "ABC",
+            "PixelHeight": 25
+          }
+        ]
+      }
+    ]
+  },
+
+  "SnapBlockTest": {
+    "Layout": {
+      "SaveFilePath": "..\\..\\UnitTestImages\\",
+      "Width": 100,
+      "Height": 100,
+      "Background Image": "..\\..\\UnitTestImages\\Red.png",
+      "Font": "C:/Windows/Fonts/arial.ttf",
+      "Blocks": [
+        {
+          "Type": "TextBlock",
+          "Name": "LetterA",
+          "HeightOffset": 50,
+          "WidthOffset": 50,
+          "Alignment": 4,
+          "Blocks": [
+            {
+              "Type": "ImageBlock",
+              "Name": "GreenBar",
+              "Alignment": 1,
+              "Height": 25,
+              "Width": 40,
+              "SnapSide": 1,
+              "Blocks": [
+                {
+                  "Type": "ImageBlock",
+                  "Name": "BlueBar1",
+                  "Alignment": 2,
+                  "HeightOffset": 10,
+                  "WidthOffset": -10,
+                  "Height": 80,
+                  "Width": 15,
+                  "SnapSide": 2,
+                  "Blocks": [
+                    {
+                      "Type": "ImageBlock",
+                      "Name": "GreenBar",
+                      "Alignment": 0,
+                      "HeightOffset": -15,
+                      "Height": 25,
+                      "Width": 40,
+                      "SnapSide": 3
+                    }
+                  ]
+                },
+                {
+                  "Type": "ImageBlock",
+                  "Name": "BlueBar2",
+                  "Alignment": 2,
+                  "HeightOffset": 10,
+                  "WidthOffset": -10,
+                  "Height": 80,
+                  "Width": 15,
+                  "SnapSide": 4
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "Images": [
+      {
+        "Filename": "SnapBlockTest",
+        "Data": [
+          {
+            "Name": "LetterA",
+            "Text": "A",
+            "PixelHeight": 50,
+            "Blocks": [
+              {
+                "Name": "GreenBar",
+                "StoredImage": "../../UnitTestImages/Green.png",
+                "RetainAspectRatio": false,
+                "Blocks": [
+                  {
+                    "Name": "BlueBar1",
+                    "StoredImage": "../../UnitTestImages/Blue.png",
+                    "RetainAspectRatio": false,
+                    "Blocks": [
+                      {
+                        "Name": "GreenBar",
+                        "StoredImage": "../../UnitTestImages/Green.png",
+                        "RetainAspectRatio": false
+                      }
+                    ]
+                  },
+                  {
+                    "Name": "BlueBar2",
+                    "StoredImage": "../../UnitTestImages/Blue.png",
+                    "RetainAspectRatio": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+
+  "PotentialLayoutTest": {
+    "Layout": {
+      "SaveFilePath": "..\\..\\UnitTestImages\\",
+      "Width": 100,
+      "Height": 100,
+      "Background Image": "..\\..\\UnitTestImages\\Red.png",
+      "Font": "C:/Windows/Fonts/arial.ttf",
+      "Blocks": [
+        {
+          "Type": "TextBlock",
+          "Name": "LetterA",
+          "HeightOffset": 50,
+          "WidthOffset": 50,
+          "Alignment": 4,
+          "PotentialLayouts": [
+            {
+              "LayoutName": "LeftSide",
+              "Type": "ImageBlock",
+              "Name": "GreenBar",
+              "Alignment": 1,
+              "Height": 25,
+              "Width": 40,
+              "SnapSide": 1,
+              "Blocks": [
+                {
+                  "Type": "ImageBlock",
+                  "Name": "BlueBar1",
+                  "Alignment": 2,
+                  "HeightOffset": 10,
+                  "WidthOffset": -10,
+                  "Height": 80,
+                  "Width": 15,
+                  "SnapSide": 2,
+                  "Blocks": [
+                    {
+                      "Type": "ImageBlock",
+                      "Name": "GreenBar",
+                      "Alignment": 0,
+                      "HeightOffset": -15,
+                      "Height": 25,
+                      "Width": 40,
+                      "SnapSide": 3
+                    }
+                  ]
+                },
+                {
+                  "Type": "ImageBlock",
+                  "Name": "BlueBar2",
+                  "Alignment": 2,
+                  "HeightOffset": 10,
+                  "WidthOffset": -10,
+                  "Height": 80,
+                  "Width": 15,
+                  "SnapSide": 4
+                }
+              ]
+            },
+            {
+              "LayoutName": "RightSide",
+              "Type": "ImageBlock",
+              "Name": "BlueBar",
+              "Alignment": 1,
+              "Height": 25,
+              "Width": 40,
+              "SnapSide": 1,
+              "Blocks": [
+                {
+                  "Type": "ImageBlock",
+                  "Name": "GreenBar1",
+                  "Alignment": 2,
+                  "HeightOffset": 10,
+                  "WidthOffset": 10,
+                  "Height": 80,
+                  "Width": 15,
+                  "SnapSide": 2,
+                  "Blocks": [
+                    {
+                      "Type": "ImageBlock",
+                      "Name": "BlueBar",
+                      "Alignment": 0,
+                      "HeightOffset": -15,
+                      "Height": 25,
+                      "Width": 40,
+                      "SnapSide": 3
+                    }
+                  ]
+                },
+                {
+                  "Type": "ImageBlock",
+                  "Name": "GreenBar2",
+                  "Alignment": 2,
+                  "HeightOffset": 10,
+                  "WidthOffset": 10,
+                  "Height": 80,
+                  "Width": 15,
+                  "SnapSide": 4
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "Images": [
+      {
+        "Filename": "PotentialLayoutTestLeft",
+        "Data": [
+          {
+            "Name": "LetterA",
+            "Text": "A",
+            "PixelHeight": 50,
+            "Blocks": [
+              {
+                "Name": "LeftSide",
+                "StoredImage": "../../UnitTestImages/Green.png",
+                "RetainAspectRatio": false,
+                "Blocks": [
+                  {
+                    "Name": "BlueBar1",
+                    "StoredImage": "../../UnitTestImages/Blue.png",
+                    "RetainAspectRatio": false,
+                    "Blocks": [
+                      {
+                        "Name": "GreenBar",
+                        "StoredImage": "../../UnitTestImages/Green.png",
+                        "RetainAspectRatio": false
+                      }
+                    ]
+                  },
+                  {
+                    "Name": "BlueBar2",
+                    "StoredImage": "../../UnitTestImages/Blue.png",
+                    "RetainAspectRatio": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Filename": "PotentialLayoutTestRight",
+        "Data": [
+          {
+            "Name": "LetterA",
+            "Text": "A",
+            "PixelHeight": 50,
+            "Blocks": [
+              {
+                "Name": "RightSide",
+                "StoredImage": "../../UnitTestImages/Blue.png",
+                "RetainAspectRatio": false,
+                "Blocks": [
+                  {
+                    "Name": "GreenBar1",
+                    "StoredImage": "../../UnitTestImages/Green.png",
+                    "RetainAspectRatio": false,
+                    "Blocks": [
+                      {
+                        "Name": "BlueBar",
+                        "StoredImage": "../../UnitTestImages/Blue.png",
+                        "RetainAspectRatio": false
+                      }
+                    ]
+                  },
+                  {
+                    "Name": "GreenBar2",
+                    "StoredImage": "../../UnitTestImages/Green.png",
+                    "RetainAspectRatio": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+
+  "OverrideTest": {
+    "Layout": {
+      "SaveFilePath": "..\\..\\UnitTestImages\\",
+      "Width": 100,
+      "Height": 100,
+      "Background Image": "..\\..\\UnitTestImages\\Red.png",
+      "Blocks": [
+        {
+          "Type": "ImageBlock",
+          "Name": "BlueCenter",
+          "HeightOffset": 50,
+          "WidthOffset": 50,
+          "Width": 50,
+          "Height": 50,
+          "Alignment": 4
+        }
+      ]
+    },
+    "Images": [
+      {
+        "Filename": "OverrideOverrideTest",
+        "Data": [
+          {
+            "Name": "BlueCenter",
+            "StoredImage": "../../UnitTestImages/Blue.png",
+            "RetainAspectRatio": false,
+            "Override": {
+              "HeightOffset": 35,
+              "WidthOffset": 60,
+              "Height": 30,
+              "Width": 40,
+              "Alignment": 1
+            }
+          }
+        ]
+      },
+      {
+        "Filename": "OverrideTest",
+        "Data": [
+          {
+            "Name": "BlueCenter",
+            "StoredImage": "../../UnitTestImages/Blue.png",
+            "RetainAspectRatio": false
+          }
+        ]
+      }
+    ]
+  }
+}

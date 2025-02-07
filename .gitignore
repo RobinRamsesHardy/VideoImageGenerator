@@ -1,0 +1,15 @@
+#Folders to ignore
+.vs/
+Debug/
+Release/
+x64/
+x86/
+Dumps/
+Output/
+UnitTestImages/*
+
+#We need to include this file because the Unit Tests will break without it
+!UnitTestImages/ExpectedResults/
+
+#filetypes to ignore
+*.user
