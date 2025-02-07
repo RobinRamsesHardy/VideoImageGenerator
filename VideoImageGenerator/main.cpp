@@ -3,6 +3,7 @@
 #include "Header/Font.h"
 #include <fstream>
 
+//TODO: Make an editor to make he .json creation easier
 int main() 
 {
 	std::string Filepath = "";
