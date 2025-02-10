@@ -61,6 +61,8 @@ void Layout::Initialize(const nlohmann::json& JData)
 		BottomHeight = JData.at("BottomHeight");
 	}
 
+	AddPotentialLayouts(JData, Canvas);
+
 	if (JData.contains("Blocks"))
 	{
 		nlohmann::json Blocks = JData.at("Blocks");
@@ -185,23 +187,7 @@ void Layout::AddBlock(const nlohmann::json& JData, const std::shared_ptr<BaseBlo
 		}
 	}
 
-	//Go through the PotentialLayouts if they are there and store the .json of this section so it can be constructed later if it is called on
-	if (JData.contains("PotentialLayouts"))
-	{
-		nlohmann::json Layouts = JData.at("PotentialLayouts");
-		for (int i = 0; i < Layouts.size(); i++)
-		{
-			nlohmann::json Layout = Layouts[i];
-			if (Layout.contains("LayoutName"))
-			{
-				TempBlock->AddPotentialLayout(std::shared_ptr<PotentialLayout>(new PotentialLayout(Layout.at("LayoutName"), Layout)));
-			}
-			else 
-			{
-				printf("Couldn't find a LayoutName for a PotentialLayout in Block: %s.", TempBlock->GetName().c_str());
-			}
-		}
-	}
+	AddPotentialLayouts(JData, TempBlock);
 
 	if (JData.contains("Blocks"))
 	{
@@ -209,6 +195,27 @@ void Layout::AddBlock(const nlohmann::json& JData, const std::shared_ptr<BaseBlo
 		for (int i = 0; i < Block.size(); i++)
 		{
 			AddBlock(Block[i], TempBlock);
+		}
+	}
+}
+
+void Layout::AddPotentialLayouts(const nlohmann::json& JData, const std::shared_ptr<BaseBlock>& currentBlock) 
+{
+	//Go through the PotentialLayouts if they are there and store the .json of this section so it can be constructed later if it is called on
+	if (JData.contains("PotentialLayouts") && currentBlock != nullptr)
+	{
+		nlohmann::json Layouts = JData.at("PotentialLayouts");
+		for (int i = 0; i < Layouts.size(); i++)
+		{
+			nlohmann::json Layout = Layouts[i];
+			if (Layout.contains("LayoutName"))
+			{
+				currentBlock->AddPotentialLayout(std::shared_ptr<PotentialLayout>(new PotentialLayout(Layout.at("LayoutName"), Layout)));
+			}
+			else
+			{
+				printf("Couldn't find a LayoutName for a PotentialLayout in Block: %s.", currentBlock->GetName().c_str());
+			}
 		}
 	}
 }
@@ -262,26 +269,14 @@ void Layout::AddData(const nlohmann::json& JData, const std::shared_ptr<BaseBloc
 	}
 
 	//Now that we have a name for a block we have to find it. 
-	//If the name is the same as a PotentialLayout from the previousBlock it will be constructed.
 	std::shared_ptr<BaseBlock> TempBlock = nullptr;
 	if (previousBlock == nullptr) 
 	{
-		TempBlock = FindBlock(Canvas->GetLinkedBlocks(), TempName);
-	}
-	else if (!FindLayout(previousBlock->GetPotentialLayouts(), TempName).empty())
-	{
-		AddBlock(FindLayout(previousBlock->GetPotentialLayouts(), TempName), previousBlock);
-		TempBlock = previousBlock->GetLinkedBlocks()[previousBlock->GetLinkedBlocks().size() - 1];
-		TempBlock->SetCreatedThroughPossibleLayout(true);
-	}
-	else if(FindBlock(previousBlock->GetLinkedBlocks(), TempName) != nullptr)
-	{
-		TempBlock = FindBlock(previousBlock->GetLinkedBlocks(), TempName);
+		FindBlock(TempBlock, Canvas, TempName);
 	}
 	else 
 	{
-		printf("Couldn't find the layout or potential layout with the name %s in the lists of block %s.\n", TempName.c_str(), previousBlock->GetName().c_str());
-		return;
+		FindBlock(TempBlock, previousBlock, TempName);
 	}
 
 	if (TempBlock == nullptr) 
@@ -377,6 +372,26 @@ void Layout::AddData(const nlohmann::json& JData, const std::shared_ptr<BaseBloc
 		{
 			AddData(Data[i], TempBlock);
 		}
+	}
+}
+
+void Layout::FindBlock(std::shared_ptr<BaseBlock>& foundBlock, const std::shared_ptr<BaseBlock>& currentBlock, const std::string& name)
+{
+	//If the name is the same as a PotentialLayout from the previousBlock it will be constructed.
+	if (!FindLayout(currentBlock->GetPotentialLayouts(), name).empty())
+	{
+		AddBlock(FindLayout(currentBlock->GetPotentialLayouts(), name), currentBlock);
+		foundBlock = currentBlock->GetLinkedBlocks()[currentBlock->GetLinkedBlocks().size() - 1];
+		foundBlock->SetCreatedThroughPossibleLayout(true);
+	}
+	else if (FindBlock(currentBlock->GetLinkedBlocks(), name) != nullptr)
+	{
+		foundBlock = FindBlock(currentBlock->GetLinkedBlocks(), name);
+	}
+	else
+	{
+		printf("Couldn't find the layout or potential layout with the name %s in the lists of block %s.\n", name.c_str(), currentBlock->GetName().c_str());
+		return;
 	}
 }
 

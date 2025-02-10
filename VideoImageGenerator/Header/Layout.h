@@ -21,10 +21,12 @@ private:
 
 	//Adders
 	void AddBlock(const nlohmann::json& JData, const std::shared_ptr<BaseBlock>& previousBlock = nullptr);
+	void AddPotentialLayouts(const nlohmann::json& JData, const std::shared_ptr<BaseBlock>& currentBlock);
 	void AddBaseBlockData(const nlohmann::json& JData, const std::shared_ptr<BaseBlock>& currentBlock, const bool& override = false);
 	void AddData(const nlohmann::json& JData, const std::shared_ptr<BaseBlock>& previousBlock = nullptr);
 
 	//Finders
+	void FindBlock(std::shared_ptr<BaseBlock>& foundBlock, const std::shared_ptr<BaseBlock>& currentBlock, const std::string& name);
 	std::shared_ptr<BaseBlock> FindBlock(const std::vector<std::shared_ptr<BaseBlock>>& list, const std::string& name);
 	nlohmann::json FindLayout(const std::vector<std::shared_ptr<PotentialLayout>>& list, const std::string& name);
 	void FindLowestHeight(const std::shared_ptr<BaseBlock>& currentBlock, int& value);
