@@ -39,11 +39,18 @@ void ImageBlock::SaveImage(const std::shared_ptr<Image>& image, const std::share
 			if (Width != 0 && Width != StoredImage->GetWidth())
 			{
 				StoredImage->ResizeImageWidth(Width);
+				if (Height != 0 && Height < StoredImage->GetHeight())
+				{
+					StoredImage->ResizeImageHeight(Height);
+				}
 			}
-
-			if (Height != 0 && Height < StoredImage->GetHeight())
+			else if (Height != 0 && Height != StoredImage->GetHeight())
 			{
 				StoredImage->ResizeImageHeight(Height);
+				if (Width != 0 && Width < StoredImage->GetWidth())
+				{
+					StoredImage->ResizeImageWidth(Width);
+				}
 			}
 		}
 		else
