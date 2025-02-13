@@ -58,7 +58,7 @@ void Font::MakeCharacterWidthMap()
 {
 	//Make a string with all the characters we will initialize for this map
 	//Note: If a character outside of these gets used the code will break
-	std::string Alphabet{"aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ 0123456789+-_=:.,"};
+	std::string Alphabet{"aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ 0123456789+-_=:.,'\""};
 	CharacterInfo temp;
 
 	//Go throught every letter in the alphabet along with " ", 0-9, and some special characters and load all the width and offsets
