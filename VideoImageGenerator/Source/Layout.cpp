@@ -115,10 +115,17 @@ void Layout::SaveImage(const std::string& saveLocation)
 
 	//Due to what I want to do with this project I want to be able to crop the background to more accurately fit the contents of the layout.
 	//Because of this I am cutting out a section of the background and moving it up a little to fit better.
-	if (BottomDistanceFromLowestLayoutBlock > 0 && BottomHeight > 0)
+	if (BottomDistanceFromLowestLayoutBlock > 0 && BottomHeight > 0 && LowestHeight + BottomDistanceFromLowestLayoutBlock < Background->GetHeight())
 	{
 		std::shared_ptr<Image> BottomSection = Background->CopyImageSection(Background->GetWidth(), BottomHeight, 0, Background->GetHeight() - BottomHeight);
-		Background->EraseImageSection(Background->GetWidth(), Background->GetHeight() - LowestHeight, 0, LowestHeight);
+		if (LowestHeight < Background->GetHeight() - BottomHeight) 
+		{
+			Background->EraseImageSection(Background->GetWidth(), Background->GetHeight() - LowestHeight, 0, LowestHeight);
+		}
+		else 
+		{
+			Background->EraseImageSection(Background->GetWidth(), Background->GetHeight() - BottomHeight, 0, Background->GetHeight() - BottomHeight);
+		}
 		Background->CompositeImage(BottomSection, 0, LowestHeight + BottomDistanceFromLowestLayoutBlock - BottomHeight);
 	}
 
