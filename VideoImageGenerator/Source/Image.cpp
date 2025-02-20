@@ -13,7 +13,7 @@ Image::Image()
 
 Image::Image(const std::string& filename)
 {
-	std::shared_ptr<unsigned char> RawImageData(stbi_load(filename.c_str(), &Width, &Height, &Components, 4));
+	std::shared_ptr<unsigned char> RawImageData(stbi_load(filename.c_str(), &Width, &Height, &Components, 0));
 	if (RawImageData.get() == NULL)
 	{
 		printf("Image: %s failed to load because %s\n", filename.c_str(), stbi_failure_reason());
